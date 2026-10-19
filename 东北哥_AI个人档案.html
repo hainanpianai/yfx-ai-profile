@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>东北哥 · AI个人档案（四板块版）</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231A2B45'/%3E%3Ccircle cx='38' cy='44' r='14' fill='%23E8A33D'/%3E%3Cpath d='M20 74 Q38 58 56 66 L80 74' stroke='%23fff' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+<style>
+  :root{--navy:#1A2B45;--gold:#E8A33D;--gold2:#F0B85C;--ink:#1C2530;--sub:#5F7184;--line:#E6EBF1;--bg:#F5F7FA;--card:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .tag-pill{display:inline-block;font-size:12px;padding:3px 11px;border-radius:999px;background:#EDF2F7;color:var(--navy);margin:2px 3px 2px 0}
+
+  /* Header */
+  header{background:linear-gradient(135deg,var(--navy) 0%,#2a4a74 100%);color:#fff;padding:44px 0 40px}
+  .profile{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:var(--navy);flex:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .profile h1{font-size:clamp(24px,4vw,32px);font-weight:900;letter-spacing:.5px}
+  .profile .role{font-size:15px;color:#C7D3E0;margin-top:4px}
+  .profile .meta{margin-top:8px;font-size:13px;color:#AEBBC9}
+  .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 18px;min-width:96px;text-align:center}
+  .kpi .n{font-size:22px;font-weight:900;color:var(--gold2)}
+  .kpi .l{font-size:11.5px;color:#B7C4D2;margin-top:2px}
+
+  /* 板块导航 */
+  .tabnav{position:sticky;top:0;z-index:40;background:var(--navy);display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:10px 12px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+  .tabnav button{background:transparent;border:1px solid rgba(255,255,255,.2);color:#C7D3E0;padding:8px 18px;border-radius:999px;font-size:14px;cursor:pointer;font-family:inherit;transition:all .2s}
+  .tabnav button:hover{border-color:var(--gold2);color:#fff}
+  .tabnav button.on{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+
+  section.block{padding:34px 0 6px}
+  .block h2{font-size:22px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .block .lead{color:var(--sub);font-size:14px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+  .card h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
+  .card p{font-size:13.5px;color:var(--sub)}
+  .card ul{font-size:13.5px;color:var(--sub);padding-left:18px}
+  .card ul li{margin-bottom:4px}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+
+  .assets{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .assets th{background:var(--navy);color:#fff;text-align:left;padding:10px 14px;font-weight:600}
+  .assets td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  .assets tr:last-child td{border-bottom:none}
+  .assets .fname{font-weight:600;color:var(--navy)}
+  .assets .code{font-family:Consolas,Menlo,monospace;font-size:12px;color:#8A97A6}
+  .assets tr:hover td{background:#F7FAFD}
+
+  .agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+  .agent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .agent .t{font-weight:700;font-size:14px;margin-bottom:2px}
+  .agent .d{font-size:12px;color:var(--sub);line-height:1.45}
+
+  .company{border-left:4px solid var(--gold);background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+  .company .cname{font-size:16px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .company .cname .badge{font-size:11px;background:var(--gold);color:var(--navy);padding:2px 9px;border-radius:999px;font-weight:700}
+  .company .cname .badge.b2{background:#2a4a74;color:#fff}
+  .company ul{font-size:13.5px;color:var(--sub);padding-left:18px}
+  .company ul li{margin-bottom:4px}
+
+  .note{background:#FFF7E8;border:1px solid #F2DCA8;border-radius:10px;padding:12px 16px;font-size:13px;color:#7A5B1E;margin-bottom:12px}
+
+  footer{background:var(--navy);color:#9FB2C3;padding:24px 0;margin-top:30px;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="profile">
+      <div class="avatar">東</div>
+      <div>
+        <h1>东北哥 · AI 个人档案</h1>
+        <div class="role">两家公司实控人 · 品牌「易复兴YFX」 · AI超级Master集群主理人</div>
+        <div class="meta">国际物流 · 跨境敏感货专线 · 外贸B端获客 · 高端形象IP · AI自动化</div>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="n">2</div><div class="l">家公司</div></div>
+      <div class="kpi"><div class="n">10</div><div class="l">Master专家</div></div>
+      <div class="kpi"><div class="n">100+</div><div class="l">Skill资产</div></div>
+      <div class="kpi"><div class="n">2平台</div><div class="l">目标部署</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 板块导航 -->
+<nav class="tabnav">
+  <button data-tab="sec1" class="on">① 两家公司业务</button>
+  <button data-tab="sec2">② 个人喜好</button>
+  <button data-tab="sec3">③ 个人习惯</button>
+  <button data-tab="sec4">④ AI资产与部署</button>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===== 板块一：两家公司业务 ===== -->
+  <section class="block" id="sec1">
+    <h2>① 两家公司业务</h2>
+    <p class="lead">名下两家公司，业务分工明确，互为支撑。</p>
+
+    <div class="company">
+      <div class="cname">深圳市量化供应链有限公司 <span class="badge">主营 · 物流</span></div>
+      <ul>
+        <li><b>主营：</b>国际物流与跨境供应链，核心卖点「收敏感货首选」</li>
+        <li><b>专线：</b>冻干粉等2-9类敏感货全球专线、化工/DG危险品正规申报、电子烟专线、普货海运、欧洲专线、美西海外仓</li>
+        <li><b>对公主体：</b>法人郭秀锋，工行对公户，用于支付宝/微信企业认证与收款</li>
+        <li><b>客户：</b>外贸商、跨境电商卖家、工厂老板（B端）</li>
+        <li><b>收款：</b>微信/支付宝收款人、支付宝账号13144429555（YXF易复兴）</li>
+      </ul>
+    </div>
+
+    <div class="company">
+      <div class="cname">海南偏爱投资有限公司 <span class="badge b2">抖音账号主体</span></div>
+      <ul>
+        <li><b>定位：</b>内容与IP承载主体，抖音等短视频账号的运营主体</li>
+        <li><b>作用：</b>承接「东北哥」IP的内容矩阵，为物流业务做品牌与获客</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 板块二：个人喜好 ===== -->
+  <section class="block hidden" id="sec2">
+    <h2>② 个人喜好</h2>
+    <p class="lead">高端时尚形象偏好，用于IP人设与内容视觉风格。</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>穿搭偏好</h3>
+        <p>
+          <span class="tag-pill">杜嘉班纳</span><span class="tag-pill">巴黎世家</span><span class="tag-pill">菲利普普兰</span>
+        </p>
+        <p style="margin-top:8px">偏爱奢侈品牌穿搭，塑造高端、专业的B端形象。</p>
+      </div>
+      <div class="card">
+        <h3>名表偏好</h3>
+        <p>
+          <span class="tag-pill">理查德米勒</span><span class="tag-pill">江诗丹顿</span><span class="tag-pill">德国朗格</span>
+        </p>
+        <p style="margin-top:8px">顶级名表作为身份与实力象征，强化「收敏感货首选」的可靠背书。</p>
+      </div>
+      <div class="card">
+        <h3>视觉风格</h3>
+        <p>偏好高冲击力、专业获客风（仓库实拍+资质展示）与痛点直给风（价格锚点+逼单收尾）两种内容范式。</p>
+      </div>
+      <div class="card">
+        <h3>内容形态</h3>
+        <p>偏好9:16高清竖屏、带钩子开头、无文字水印的短视频；图片偏好阳光美颜、显高、脸长的视觉优化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 板块三：个人习惯 ===== -->
+  <section class="block hidden" id="sec3">
+    <h2>③ 个人习惯</h2>
+    <p class="lead">工作与协作习惯，指导AI如何高效配合。</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>结果导向</h3>
+        <p>要成品不要解释，直接交付可用结果。对AI要求极高，视为「执行者」而非「顾问」。</p>
+      </div>
+      <div class="card">
+        <h3>极简指令</h3>
+        <p>沟通极度简短、指令化（如"不要废话"），偏好一句话下达任务。</p>
+      </div>
+      <div class="card">
+        <h3>获客自动化</h3>
+        <p>以企业微信+钉钉为核心，构建"一人外贸自动化公司"获客与报价工作流。</p>
+      </div>
+      <div class="card">
+        <h3>商务拓展</h3>
+        <p>关注深圳本地展会与跨境电商展，通过参展拓客；偏好官方权威渠道办事。</p>
+      </div>
+      <div class="card">
+        <h3>精确参数</h3>
+        <p>对视频/内容有明确结构化要求（如38秒、4段10-13秒），偏好强结构指令。</p>
+      </div>
+      <div class="card">
+        <h3>求新版本</h3>
+        <p>关注AI工具版本升级与最新能力（如GPT/豆包/扣子版本），追求能力上限。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 板块四：AI资产与部署 ===== -->
+  <section class="block hidden" id="sec4">
+    <h2>④ AI资产与部署</h2>
+    <p class="lead">当前AI配置全景与待上传资产清单。</p>
+
+    <h3 style="margin:6px 0 10px">Agent 配置存档</h3>
+    <div class="agent-grid" style="margin-bottom:18px">
+      <div class="agent"><div class="t">Master 总控</div><div class="d">总指挥，识别需求→路由→汇聚交付</div></div>
+      <div class="agent"><div class="t">物流专家</div><div class="d">敏感货/危化品/电子烟/海运/海外仓</div></div>
+      <div class="agent"><div class="t">外贸获客专家</div><div class="d">B端获客/开发信/报价/短视频脚本</div></div>
+      <div class="agent"><div class="t">电商运营专家</div><div class="d">选品/Listing/投放/店铺</div></div>
+      <div class="agent"><div class="t">短视频专家</div><div class="d">爆款脚本/分镜/图文</div></div>
+      <div class="agent"><div class="t">设计专家</div><div class="d">海报/Logo/主图/图生图</div></div>
+      <div class="agent"><div class="t">数据分析专家</div><div class="d">经营分析/报表/财务测算</div></div>
+      <div class="agent"><div class="t">开发专家</div><div class="d">建站/小程序/自动化</div></div>
+      <div class="agent"><div class="t">法务合规专家</div><div class="d">合同/合规/报关/知产</div></div>
+      <div class="agent"><div class="t">客服专家</div><div class="d">售前售后/投诉处理</div></div>
+      <div class="agent"><div class="t">行政文案专家</div><div class="d">公文/制度/汇报</div></div>
+      <div class="agent"><div class="t">Skill库（滚动）</div><div class="d">全行业学科，每天300个扩充</div></div>
+    </div>
+
+    <h3 style="margin:6px 0 10px">资产清单（待上传 GitHub / Cloudflare）</h3>
+    <table class="assets" style="margin-bottom:18px">
+      <thead><tr><th>资产</th><th>文件</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname">Master总控系统</td><td class="code">腾讯WorkBuddy_Master总控系统.md</td><td>总控提示词+接入配置+接入步骤</td></tr>
+        <tr><td class="fname">10大子Agent提示词</td><td class="code">腾讯WorkBuddy_10大子Agent提示词大全.md</td><td>10个专家专属提示词</td></tr>
+        <tr><td class="fname">CreateAgent导入模板</td><td class="code">腾讯WorkBuddy_CreateAgent导入模板.json</td><td>WorkBuddy批量创建Agent的JSON</td></tr>
+        <tr><td class="fname">Skill样本批次</td><td class="code">Skill库/样本_Skill_2026-10-19_前100个.json</td><td>结构化Skill样本100个</td></tr>
+        <tr><td class="fname">内测发布页</td><td class="code">Skill库内测发布/易复兴YFX_Skill库内测发布.html</td><td>Master+Skill可视化内测门户</td></tr>
+        <tr><td class="fname">本档案</td><td class="code">东北哥_AI个人档案.html</td><td>四板块：公司/喜好/习惯/AI资产</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <h3>部署计划</h3>
+      <p><b>GitHub（代码/资产存档）：</b>新建仓库存放全部资产文件（Markdown / JSON / HTML），作为AI项目版本管理与存档中心。</p>
+      <p style="margin-top:6px"><b>Cloudflare（网页发布）：</b>本档案为自包含单HTML，可用Cloudflare Pages / Workers静态部署，生成可访问在线链接，即「上线内测」正式版。</p>
+    </div>
+    <div class="note">当前阶段：资产已在本机就绪，等待 GitHub / Cloudflare 账号授权后执行上传与发布。</div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>东北哥 · 深圳市量化供应链有限公司 · 海南偏爱投资有限公司 · 易复兴YFX</div>
+    <div>AI个人档案 · 四板块版 · 2026-10</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tabnav button');
+  var secs=document.querySelectorAll('section.block');
+  function show(id){
+    secs.forEach(function(s){s.classList.add('hidden')});
+    var el=document.getElementById(id);
+    if(el)el.classList.remove('hidden');
+    tabs.forEach(function(t){t.classList.toggle('on',t.dataset.tab===id)});
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.tab)})});
+})();
+</script>
+</body>
+</html>
